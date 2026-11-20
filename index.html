@@ -965,13 +965,17 @@ html:not(.anim) .swap-old{display:none}
   form.addEventListener('click',function(e){ if(e.target.closest('[data-next]')) msOpen(false); },true);
   form.addEventListener('input',function(e){ var id={ville:'err-ville',prenom:'err-prenom',tel:'err-tel'}[e.target.name]; if(id && e.target.getAttribute('aria-invalid')==='true'){ var ok=e.target.name==='tel'?phoneOk(e.target.value):!!e.target.value.trim(); if(ok) showErr(id,e.target,false); } });
   form.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target.tagName==='INPUT' && stepNow<3){ e.preventDefault(); if(valid(stepNow)) goStep(stepNow+1); } });
-  /* Envoi : chaque demande part par e-mail à entremisagency@gmail.com, via Web3Forms (web3forms.com).
-     Coller ci-dessous la clé d'accès reçue par e-mail de Web3Forms. Elle peut être visible dans le code : c'est prévu ainsi. */
-  var FORM_KEY='82fe0bdd-0e35-4596-85cd-eeebd3cd2af5';   /* clé Web3Forms d'entremisagency@gmail.com (publique par conception) */
-  var sendErr=document.getElementById('err-send');
+  /* Envoi : chaque demande part (1) dans l'app Entremis, rubrique Prospection (Supabase, fonction demande_site)
+     et (2) par e-mail à entremisagency@gmail.com (Web3Forms). Les deux clés sont publiques par conception.
+     Laisser une clé vide pour couper cet envoi. Il suffit que l'un des deux réussisse. */
+  var FORM_KEY='82fe0bdd-0e35-4596-85cd-eeebd3cd2af5';
+  var APP_URL='https://cnhxrhyugghigkozfpde.supabase.co/rest/v1/rpc/demande_site';
+  var APP_KEY='sb_publishable_85-eC1adPGzOvLtAhLPonw_2HJwrdYX';
+  var sendErr=document.getElementById('err-send'), sendErrHtml=sendErr.innerHTML;
   form.addEventListener('submit',function(e){
     e.preventDefault(); if(!valid(3)) return;
     var f=new FormData(form), prenom=f.get('prenom').trim(), ville=f.get('ville').trim(), moment=f.get('moment').toLowerCase(), tel=f.get('tel').trim();
+    var entreprise=(f.get('entreprise')||'').trim(), metiers=f.getAll('metier').join(', ');
     var btn=form.querySelector('button[type="submit"]'), label=btn.firstChild;
     function showDone(){
       steps.forEach(function(s){ s.hidden=true; }); lfCount.parentNode.hidden=true; done.hidden=false;
@@ -980,16 +984,27 @@ html:not(.anim) .swap-old{display:none}
       document.getElementById('lf-done-title').focus({preventScroll:true}); enter(done);
     }
     function reset(){ btn.disabled=false; label.textContent='Réserver mon appel'; }
-    function fail(){ sendErr.hidden=false; reset(); }
+    function fail(msg){ if(msg) sendErr.textContent=msg; else sendErr.innerHTML=sendErrHtml; sendErr.hidden=false; reset(); }
     sendErr.hidden=true;
     if(f.get('botcheck')) return;
-    if(!/^[0-9a-f-]{20,}$/i.test(FORM_KEY)){ fail(); return; }
+    var envois=[];
+    if(APP_KEY) envois.push(fetch(APP_URL,{method:'POST',headers:{'apikey':APP_KEY,'Content-Type':'application/json'},body:JSON.stringify({
+      p_entreprise:entreprise||prenom, p_contact:prenom, p_telephone:tel, p_metier:metiers,
+      p_zone:ville+' · '+f.get('rayon'), p_volume:f.get('volume'), p_quand:f.get('moment'), p_message:'Demande envoyée depuis le site'
+    })}).then(function(r){ if(r.ok) return true; return r.json().then(function(j){ throw new Error((j && j.message) || ''); }, function(){ throw new Error(''); }); }));
+    if(/^[0-9a-f-]{20,}$/i.test(FORM_KEY)) envois.push(fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+      access_key:FORM_KEY, subject:'Nouvelle demande Entremis : '+prenom+(entreprise?' ('+entreprise+')':''), from_name:'Site Entremis',
+      'Prénom':prenom, 'Entreprise':entreprise, 'Téléphone':tel, 'Moment pour rappeler':f.get('moment'),
+      'Métiers':metiers, 'Ville':ville, 'Rayon':f.get('rayon'), 'Visites par mois':f.get('volume')
+    })}).then(function(r){ return r.json(); }).then(function(j){ if(j && j.success) return true; throw new Error(''); }));
+    if(!envois.length){ fail(''); return; }
     btn.disabled=true; label.textContent='Envoi…';
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
-      access_key:FORM_KEY, subject:'Nouvelle demande Entremis : '+prenom+(f.get('entreprise')?' ('+f.get('entreprise')+')':''), from_name:'Site Entremis',
-      'Prénom':prenom, 'Entreprise':f.get('entreprise')||'', 'Téléphone':tel, 'Moment pour rappeler':f.get('moment'),
-      'Métiers':f.getAll('metier').join(', '), 'Ville':ville, 'Rayon':f.get('rayon'), 'Visites par mois':f.get('volume')
-    })}).then(function(r){ return r.json(); }).then(function(j){ if(j && j.success){ reset(); showDone(); } else fail(); }).catch(fail);
+    /* réussi dès qu'un envoi passe ; erreur seulement si tous échouent (on affiche alors le message de l'app s'il y en a un) */
+    var restants=envois.length, fini=false, message='';
+    envois.forEach(function(p){
+      p.then(function(){ if(!fini){ fini=true; reset(); showDone(); } },
+             function(err){ if(err && err.message) message=err.message; if(--restants===0 && !fini) fail(message); });
+    });
   });
 
   /* Navigation : transparente sur la nuit, blanche dès que la feuille passe dessous */
