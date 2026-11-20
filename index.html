@@ -967,7 +967,7 @@ html:not(.anim) .swap-old{display:none}
   form.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target.tagName==='INPUT' && stepNow<3){ e.preventDefault(); if(valid(stepNow)) goStep(stepNow+1); } });
   /* Envoi : chaque demande part par e-mail à entremisagency@gmail.com, via Web3Forms (web3forms.com).
      Coller ci-dessous la clé d'accès reçue par e-mail de Web3Forms. Elle peut être visible dans le code : c'est prévu ainsi. */
-  var FORM_KEY='COLLER_LA_CLE_WEB3FORMS_ICI';
+  var FORM_KEY='26be0ef5-1dfb-4358-832b-7ad56d1a129f';   /* clé Web3Forms d'entremisagency@gmail.com (publique par conception) */
   var sendErr=document.getElementById('err-send');
   form.addEventListener('submit',function(e){
     e.preventDefault(); if(!valid(3)) return;
