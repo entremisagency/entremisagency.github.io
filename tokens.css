@@ -1,0 +1,113 @@
+/* Entremis — jetons du site vitrine, version 2 (20 nov. 2026).
+   Source : DESIGN.md à la racine du projet. Ne rien écrire en dur dans les écrans. */
+
+:root{
+  color-scheme:light;
+
+  /* ---------- Nuit : héros, carte des chiffres, pied de page ---------- */
+  --color-space:#000000;                  /* même noir que l'image de l'éclipse */
+  --color-nuit:#04060D;
+  --color-nuit-trait:rgba(255,255,255,.14);
+  --color-nuit-trait-fort:rgba(255,255,255,.32);
+  --color-sur-nuit:#FFFFFF;
+  --color-sur-nuit-2:rgba(255,255,255,.64);
+  --color-sur-nuit-3:rgba(255,255,255,.56);
+
+  /* ---------- Page blanche ---------- */
+  --color-blanc:#FFFFFF;
+  --color-gris-1:#F3F5F9;
+  --color-gris-2:#E7ECF3;
+  --color-trait:rgba(10,15,26,.09);
+  --color-trait-fort:rgba(10,15,26,.16);
+  --color-encre:#0A0F1A;
+  --color-texte:#3F4A5C;
+  --color-ton-2:#808999;                  /* deuxième ton des grands textes seulement (3,2:1 sur gris-1, 3,5:1 sur blanc) */
+  --color-gris-texte:#667085;             /* petits textes discrets */
+
+  /* ---------- Action : le bleu électrique ---------- */
+  --color-action:#2F5BEA;
+  --color-action-survol:#264DCC;
+  --color-action-nuit:#3D6BFF;
+  --color-sur-action:#FFFFFF;
+  --color-action-voile:color-mix(in srgb,var(--color-action) 8%,var(--color-blanc));
+  --color-logo-bar:var(--color-action);
+
+  /* ---------- États (interface seulement) ---------- */
+  /* Vert et orange profonds, texte blanc (Marc, 20 nov. 2026 : le fluo faisait « IA »). Mêmes teintes que la webapp. */
+  --color-etat-ok:#0B8049;         /* Qualifié, Confirmée, Remplacée, coches : blanc dessus 5:1 */
+  --color-etat-attente:#AD5D00;    /* Absente, Remplacement : blanc dessus 4,8:1 */
+  --color-sur-etat:#FFFFFF;
+  --color-erreur:#C2410C;
+
+  /* ---------- Typo ---------- */
+  --font:"Outfit","Helvetica Neue",Arial,sans-serif;
+  --text-hero:clamp(42px,6.6vw,96px);
+  --text-display:clamp(30px,4.2vw,60px);
+  --text-statement:clamp(24px,2.9vw,40px);
+  --text-number:clamp(56px,7vw,96px);
+  --text-number-sm:clamp(48px,5.2vw,72px);
+  --text-title:20px;
+  --text-body-lg:18px;
+  --text-body:16px;
+  --text-small:14px;
+  --text-caption:13px;
+  --text-micro:12px;
+  --text-button:15px;
+  --weight-number:200;
+  --weight-display:300;
+  --weight-body:400;
+  --weight-strong:500;
+  --track-hero:-0.04em;
+  --track-display:-0.035em;
+  --track-statement:-0.025em;
+  --track-number:-0.04em;
+  --track-title:-0.01em;
+  --leading-hero:.96;
+  --leading-display:1.04;
+  --leading-statement:1.2;
+  --leading-title:1.25;
+  --leading-body:1.55;
+
+  /* ---------- Rayons ---------- */
+  --radius-xs:6px;
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --radius-sheet:40px;
+  --radius-pill:999px;
+
+  /* ---------- Écarts (base 4) ---------- */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px;
+  --space-section:136px;
+  --container:1240px; --gutter:32px;
+  --sheet-overlap:40px;
+
+  /* ---------- Tailles de composants ---------- */
+  --nav-h:64px; --button-h:48px; --button-h-sm:40px; --arrow-tile:40px; --arrow-tile-sm:32px;
+  --icon:18px; --avatar:32px;
+
+  /* ---------- Ombres (neutres, jamais colorées) ---------- */
+  --shadow-ui:0 1px 2px rgba(10,15,26,.06),0 12px 32px -16px rgba(10,15,26,.22);
+  --shadow-menu:0 24px 48px -24px rgba(10,15,26,.35);
+  --drop-objet:drop-shadow(0 24px 28px rgba(10,15,26,.26));
+
+  /* ---------- Mouvement ---------- */
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur-fast:160ms;
+  --dur-base:320ms;
+  --dur-reveal:900ms;
+  --dur-marquee:60s;
+}
+
+/* Téléphone : plus compact (demande de Marc, 20 nov. 2026) */
+@media (max-width:560px){
+  :root{
+    --space-section:64px; --gutter:16px; --sheet-overlap:24px; --radius-sheet:24px;
+    --radius-xl:24px; --radius-lg:20px;
+    --text-title:18px; --text-body-lg:16px; --text-button:14px;
+    --button-h:44px; --arrow-tile:34px;
+  }
+}

@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Entremis · Visites qualifiées pour artisans et installateurs</title>
+<meta name="description" content="Entremis trouve les particuliers de votre zone qui ont un projet, les rappelle, vérifie leur projet et cale la visite dans votre agenda. Demandes réservées à vous seul.">
+<meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://entremisagency.github.io/">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Entremis">
+<meta property="og:title" content="Entremis · Des particuliers prêts à signer, livrés dans votre agenda">
+<meta property="og:description" content="Entremis trouve les particuliers de votre zone qui ont un projet, les rappelle, vérifie leur projet et cale la visite dans votre agenda. Demandes réservées à vous seul.">
+<meta property="og:url" content="https://entremisagency.github.io/">
+<meta property="og:image" content="https://entremisagency.github.io/img/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Entremis : des particuliers prêts à signer, livrés dans votre agenda">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<script>
+/* Animations seulement si le visiteur ne les a pas coupées dans son système. */
+(function(){
+  var d=document.documentElement;
+  /* ?fixe dans l'adresse : page sans animation, pour les captures d'écran */
+  if(/[?&]fixe\b/.test(location.search)) return;
+  if(!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)){ d.classList.add('anim'); setTimeout(function(){d.classList.add('intro-done')},3600); }
+})();
+</script>
+<style>
+/* Entremis — site vitrine, version 2 (20 nov. 2026). Règles : DESIGN.md à la racine. Valeurs : tokens.css. */
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--color-nuit);scrollbar-color:var(--color-ton-2) var(--color-blanc)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--color-nuit);color:var(--color-texte);font:var(--weight-body) var(--text-body)/var(--leading-body) var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;caret-color:var(--color-action)}
+::selection{background:var(--color-action);color:var(--color-sur-action)}
+img,svg{display:block;max-width:100%}
+ul,ol{list-style:none}
+a{color:inherit;text-underline-offset:4px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--color-action);outline-offset:3px;border-radius:var(--radius-xs)}
+.hero :focus-visible,.night :focus-visible,.footer :focus-visible,.nav:not(.is-solid) :focus-visible{outline-color:var(--color-sur-nuit)}
+.wrap{width:min(100% - 2 * var(--gutter),var(--container));margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;top:var(--space-2);left:var(--space-2);z-index:100;padding:var(--space-2) var(--space-4);border-radius:var(--radius-pill);background:var(--color-blanc);color:var(--color-encre);font-size:var(--text-small);text-decoration:none;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.show-sm{display:none}
+.icon{width:var(--icon);height:var(--icon);flex:none;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tabnum{font-variant-numeric:tabular-nums}
+
+/* ---------- Typo ---------- */
+.t-hero{font-weight:var(--weight-display);font-size:var(--text-hero);line-height:var(--leading-hero);letter-spacing:var(--track-hero);text-wrap:balance;color:var(--color-sur-nuit)}
+.t-display{font-weight:var(--weight-display);font-size:var(--text-display);line-height:var(--leading-display);letter-spacing:var(--track-display);text-wrap:balance;color:var(--color-encre)}
+.t-statement{font-weight:var(--weight-body);font-size:var(--text-statement);line-height:var(--leading-statement);letter-spacing:var(--track-statement);text-wrap:pretty;color:var(--color-encre)}
+.t-number{font-weight:var(--weight-number);font-size:var(--text-number);line-height:.9;letter-spacing:var(--track-number);font-variant-numeric:tabular-nums}
+.title{font-weight:var(--weight-strong);font-size:var(--text-title);line-height:var(--leading-title);letter-spacing:var(--track-title);color:var(--color-encre);text-wrap:balance}
+.text{color:var(--color-texte);max-width:60ch;text-wrap:pretty}
+.caption{font-size:var(--text-caption);font-weight:var(--weight-strong);color:var(--color-gris-texte)}
+.example{font-size:var(--text-micro);color:var(--color-gris-texte)}
+.tone{color:var(--color-ton-2)}
+.hero .tone,.night .tone,.footer .tone{color:var(--color-sur-nuit-2)}
+
+/* ---------- Boutons : pilule + pastille ronde avec la flèche ---------- */
+.btn{display:inline-flex;align-items:center;gap:var(--space-3);height:var(--button-h);padding:0 calc((var(--button-h) - var(--arrow-tile)) / 2) 0 var(--space-5);border:0;border-radius:var(--radius-pill);font:var(--weight-strong) var(--text-button)/1 var(--font);text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-tile{display:grid;place-items:center;flex:none;width:var(--arrow-tile);height:var(--arrow-tile);border-radius:50%;overflow:hidden;transition:background-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease)}
+.btn-tile .icon{width:16px;height:16px;transition:transform var(--dur-base) var(--ease-out)}
+.btn:hover .btn-tile .icon,.btn:focus-visible .btn-tile .icon{transform:translate(2px,-2px)}
+.btn-primary{background:var(--color-action);color:var(--color-sur-action)}
+.btn-primary:hover{background:var(--color-action-survol)}
+.btn-primary .btn-tile{background:var(--color-blanc);color:var(--color-action)}
+.btn-light{background:var(--color-blanc);color:var(--color-encre)}
+.btn-light:hover{background:var(--color-gris-2)}
+.btn-light .btn-tile{background:var(--color-encre);color:var(--color-blanc)}
+.btn-ghost{background:transparent;color:var(--color-sur-nuit);box-shadow:inset 0 0 0 1px var(--color-nuit-trait-fort)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--color-sur-nuit)}
+.btn-ghost .btn-tile{background:var(--color-nuit-trait);color:var(--color-sur-nuit)}
+.btn-secondary{background:var(--color-gris-1);color:var(--color-encre)}
+.btn-secondary:hover{background:var(--color-gris-2)}
+.btn-secondary .btn-tile{background:var(--color-blanc);color:var(--color-encre)}
+.btn-sm{height:var(--button-h-sm);padding:0 var(--space-1) 0 var(--space-4);gap:var(--space-2)}
+.btn-sm .btn-tile{width:var(--arrow-tile-sm);height:var(--arrow-tile-sm)}
+
+/* ---------- Navigation ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:var(--color-sur-nuit);transition:background-color var(--dur-base) var(--ease),color var(--dur-base) var(--ease),box-shadow var(--dur-base) var(--ease)}
+.nav.is-solid{background:color-mix(in srgb,var(--color-blanc) 88%,transparent);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px);color:var(--color-encre);box-shadow:0 1px 0 var(--color-trait)}
+.nav-bar{display:flex;align-items:center;gap:var(--space-6);height:var(--nav-h)}
+.logo{display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;font-weight:var(--weight-strong);font-size:var(--text-small);letter-spacing:.2em}
+.logo svg{width:26px;height:26px}
+.nav-links{display:flex;gap:var(--space-6);margin-inline:auto}
+.nav-links a,.nav-client{font-size:var(--text-small);text-decoration:none;opacity:.72;transition:opacity var(--dur-fast) var(--ease)}
+.nav-links a:hover,.nav-client:hover{opacity:1}
+.nav-right{display:flex;align-items:center;gap:var(--space-5)}
+.btn-nav{background:var(--color-blanc);color:var(--color-encre)}
+.btn-nav .btn-tile{background:var(--color-encre);color:var(--color-blanc)}
+.btn-nav:hover{background:var(--color-gris-2)}
+.nav.is-solid .btn-nav{background:var(--color-action);color:var(--color-sur-action)}
+.nav.is-solid .btn-nav .btn-tile{background:var(--color-blanc);color:var(--color-action)}
+.nav.is-solid .btn-nav:hover{background:var(--color-action-survol)}
+.nav-menu-btn{display:none;place-items:center;width:var(--button-h-sm);height:var(--button-h-sm);border:0;border-radius:50%;background:var(--color-nuit-trait);cursor:pointer;transition:background-color var(--dur-fast) var(--ease)}
+.nav.is-solid .nav-menu-btn{background:var(--color-gris-1)}
+.nav-menu-btn .i-close,.nav-menu-btn[aria-expanded="true"] .i-open{display:none}
+.nav-menu-btn[aria-expanded="true"] .i-close{display:block}
+.nav-menu{position:absolute;top:calc(var(--nav-h) - var(--space-1));left:var(--gutter);right:var(--gutter);display:grid;gap:2px;padding:var(--space-3);border-radius:var(--radius-lg);background:var(--color-blanc);color:var(--color-encre);box-shadow:var(--shadow-menu),0 0 0 1px var(--color-trait)}
+.anim .nav-menu:not([hidden]){animation:menu-in var(--dur-base) var(--ease-out)}
+@keyframes menu-in{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+.nav-menu > a{display:flex;align-items:center;justify-content:space-between;padding:var(--space-4);border-radius:var(--radius-md);font-size:var(--text-body-lg);text-decoration:none}
+.nav-menu > a:hover{background:var(--color-gris-1)}
+.nav-menu > a .icon{color:var(--color-gris-texte)}
+.nav-menu-actions{display:grid;gap:var(--space-2);padding:var(--space-3) var(--space-1) var(--space-1)}
+.nav-menu-actions .btn{justify-content:space-between}
+
+/* ---------- Héros de nuit ---------- */
+.hero{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-8);min-height:clamp(720px,100svh,960px);padding:calc(var(--nav-h) + var(--space-9)) 0 calc(var(--space-7) + var(--sheet-overlap));background:var(--color-space);color:var(--color-sur-nuit);overflow:hidden}
+.hero-media{position:absolute;inset:0;z-index:-1}
+.hero-media img{position:absolute;left:0;top:var(--arc-top,12%);width:100%;height:100%;object-fit:cover;object-position:50% 0%;transform-origin:50% 45%}
+.hero h1{max-width:14ch}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--space-6)}
+.hero-copy{display:grid;gap:var(--space-5);justify-items:start}
+.hero-lead{max-width:46ch;font-size:var(--text-body-lg);color:var(--color-sur-nuit-2);text-wrap:pretty}
+.actions{display:flex;flex-wrap:wrap;gap:var(--space-3)}
+.hero-promises{display:grid;gap:var(--space-2);justify-items:end}
+.hero-promises li{display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-small);color:var(--color-sur-nuit-2)}
+.hero-promises .icon{width:16px;height:16px;color:var(--color-sur-nuit)}
+/* L'éclipse se règle une fois au chargement. Les textes ne bougent pas (Marc, 20 nov. 2026). */
+.anim .hero-media img{animation:img-settle 2.6s var(--ease-out) both}
+@keyframes img-settle{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+.intro-done .hero-media img{animation:none}
+
+/* ---------- La feuille blanche ---------- */
+.sheet{position:relative;z-index:1;margin-top:calc(-1 * var(--sheet-overlap));padding-bottom:var(--space-section);border-radius:var(--radius-sheet);background:var(--color-blanc)}
+.sec{padding-top:var(--space-section)}
+.sec:first-child{padding-top:var(--space-8)}
+/* En-tête A : titre court à gauche, grande phrase à droite */
+.head-a{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--space-6);align-items:start}
+.head-a > .title{padding-top:.45em}
+/* En-tête B : titre à gauche, texte court à droite */
+.head-b{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-6);align-items:end;margin-bottom:var(--space-8)}
+.head-b .t-display{max-width:17ch}
+.head-b-side{display:grid;gap:var(--space-5);justify-items:start}
+
+/* ---------- Pour qui + métiers ---------- */
+.trades{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--space-3);margin-top:var(--space-8)}
+.trades figure{position:relative;aspect-ratio:3/4;border-radius:var(--radius-lg);overflow:hidden;background:var(--color-nuit)}
+.trades img{width:100%;height:100%;object-fit:cover}
+.trades figcaption{position:absolute;left:var(--space-3);bottom:var(--space-3);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-blanc);color:var(--color-encre);font-size:var(--text-caption);font-weight:var(--weight-strong)}
+.trades-more{margin-top:var(--space-4);font-size:var(--text-small);color:var(--color-gris-texte)}
+
+/* ---------- Carte de preuve ---------- */
+.proof{position:relative;isolation:isolate;display:grid;gap:var(--space-8);padding:var(--space-8) var(--space-8) var(--space-7);border-radius:var(--radius-xl);background:var(--color-gris-1);overflow:hidden}
+.proof-light{position:absolute;z-index:-1;left:12%;right:-30%;bottom:-30%;height:82%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.proof-light img{width:100%;height:100%;object-fit:cover}
+.proof-copy{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end;gap:var(--space-7)}
+.proof-title{display:grid;gap:var(--space-4)}
+.proof-title .t-number{color:var(--color-encre)}
+.proof-title .t-statement{max-width:18ch}
+.proof-side .text{max-width:40ch}
+/* Les vrais écrans de l'espace client (pris sur le prototype de la webapp) */
+.proof-side{display:grid;gap:var(--space-3)}
+.proof-shots{position:relative;padding-right:13%;margin-bottom:var(--space-6)}
+.shot-desk img{width:100%;height:auto;border-radius:var(--radius-md);box-shadow:var(--shadow-ui),0 0 0 1px var(--color-trait)}
+.shot-phone{position:absolute;right:0;bottom:calc(-1 * var(--space-7));width:23%;filter:var(--drop-objet)}
+.shot-phone img{width:100%;height:auto}
+.pv-toast{position:absolute;top:13%;right:calc(13% + var(--space-5));width:320px;opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.pv-toast.is-on{opacity:1;transform:none}
+
+/* ---------- Morceaux d'interface ---------- */
+.ui{display:grid;gap:var(--space-3);padding:var(--space-4);border-radius:var(--radius-md);background:var(--color-blanc);box-shadow:var(--shadow-ui),0 0 0 1px var(--color-trait);font-size:var(--text-small);color:var(--color-encre)}
+.ui-head{display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);color:var(--color-gris-texte);font-size:var(--text-caption);font-weight:var(--weight-strong)}
+.ui-head span{display:flex;align-items:center;gap:var(--space-2)}
+.ui-head .icon{width:16px;height:16px}
+.notif{display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-3);align-items:center}
+.notif .mark-ico{display:grid;place-items:center;width:var(--avatar);height:var(--avatar);border-radius:var(--radius-sm);background:var(--color-action);color:var(--color-sur-action)}
+.notif b{display:block;font-weight:var(--weight-strong)}
+.notif span{color:var(--color-gris-texte);font-size:var(--text-caption)}
+.rdv{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:var(--space-3);align-items:center}
+.rdv time{color:var(--color-gris-texte);font-size:var(--text-caption);line-height:1.3;font-variant-numeric:tabular-nums}
+.rdv time b{display:block;color:var(--color-encre);font-weight:var(--weight-strong);font-size:var(--text-small);white-space:nowrap}
+.rdv .who{min-width:0}
+.rdv .who b{display:block;font-weight:var(--weight-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rdv .who span{display:block;color:var(--color-gris-texte);font-size:var(--text-caption);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.state{padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-size:var(--text-micro);font-weight:var(--weight-strong);white-space:nowrap}
+.state-ok{background:var(--color-etat-ok);color:var(--color-sur-etat)}
+.state-wait{background:var(--color-etat-attente);color:var(--color-sur-etat)}
+.checks{display:grid;gap:var(--space-2)}
+.checks li{display:grid;grid-template-columns:20px 84px minmax(0,1fr);gap:var(--space-2);align-items:center}
+.checks .ok{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--color-etat-ok);color:var(--color-sur-etat)}
+.checks .ok.wait{background:var(--color-etat-attente)}
+.checks .ok svg{width:12px;height:12px;stroke-width:2.5}
+.checks b{font-weight:var(--weight-strong)}
+.checks span:last-child{color:var(--color-texte);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:var(--color-gris-1);font-size:var(--text-micro);font-weight:var(--weight-strong);color:var(--color-encre)}
+.chip .icon{width:13px;height:13px;color:var(--color-action)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.avatar-photo{width:var(--avatar);height:var(--avatar);border-radius:50%;object-fit:cover;background:var(--color-gris-2)}
+.account{display:grid;grid-template-columns:var(--avatar) minmax(0,1fr) auto;gap:var(--space-3);align-items:center}
+.account + .account{padding-top:var(--space-3);border-top:1px solid var(--color-trait)}
+.account b{display:block;font-weight:var(--weight-strong)}
+.account div span{display:block;color:var(--color-gris-texte);font-size:var(--text-caption)}
+.thread{display:grid;gap:var(--space-2)}
+.msg{max-width:88%;padding:var(--space-3);border-radius:var(--radius-md);font-size:var(--text-small);line-height:1.45}
+.msg-in{background:var(--color-gris-1);border-bottom-left-radius:var(--radius-xs)}
+.msg-out{justify-self:end;min-height:2.9em;background:var(--color-action);color:var(--color-sur-action);border-bottom-right-radius:var(--radius-xs)}
+.msg-meta{display:flex;justify-content:space-between;gap:var(--space-3);color:var(--color-gris-texte);font-size:var(--text-micro);font-variant-numeric:tabular-nums}
+.msg-meta b{color:var(--color-action);font-weight:var(--weight-strong);transition:opacity var(--dur-base) var(--ease)}
+.timer{display:inline-flex;align-items:center;gap:6px}
+.timer svg{width:14px;height:14px;transform:rotate(-90deg)}
+.timer-track{fill:none;stroke:var(--color-gris-2);stroke-width:2.5}
+.timer-fill{fill:none;stroke:var(--color-action);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:37 60}
+.invite-when{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);font-variant-numeric:tabular-nums}
+.invite-when b{font-weight:var(--weight-strong);font-size:var(--text-body)}
+.invite-when span{color:var(--color-gris-texte)}
+.invite-title{padding:var(--space-3);border-radius:var(--radius-sm);background:var(--color-action);color:var(--color-sur-action);font-weight:var(--weight-strong)}
+.invite-rows{display:grid;gap:var(--space-2);color:var(--color-texte)}
+.invite-rows li{display:flex;align-items:center;gap:var(--space-3)}
+.invite-rows .icon{width:16px;height:16px;color:var(--color-gris-texte)}
+.invite-face{width:20px;height:20px;margin-left:-2px}
+
+/* ---------- Logos clients ---------- */
+.clients-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:var(--space-6);align-items:center}
+.clients-row h2{font-size:var(--text-small);font-weight:var(--weight-body);color:var(--color-gris-texte)}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:flex;width:max-content}
+.anim .marquee-track{animation:marquee var(--dur-marquee) linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.logo-row{display:flex;flex-shrink:0;align-items:center}
+.logo-row li{padding-inline:var(--space-7)}
+.logo-row img{height:28px;width:auto;opacity:.5;transition:opacity var(--dur-fast) var(--ease)}
+.logo-row .is-mark img{height:40px}
+.logo-row img[src*="radeos"]{height:38px}
+.logo-row li:hover img{opacity:.9}
+html:not(.anim) .marquee{-webkit-mask-image:none;mask-image:none}
+html:not(.anim) .marquee-track{width:auto}
+html:not(.anim) .logo-row{flex:1;flex-wrap:wrap;justify-content:flex-start;gap:var(--space-6) var(--space-7)}
+html:not(.anim) .logo-row li{padding-inline:0}
+html:not(.anim) .logo-row[aria-hidden]{display:none}
+
+
+/* ---------- Ce qu'on fait ---------- */
+.work{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--space-4)}
+.work-card{grid-column:span 6;display:grid;grid-template-rows:1fr auto;gap:var(--space-7);padding:var(--space-6);border-radius:var(--radius-xl);background:var(--color-gris-1);min-width:0}
+.work-card.wide{grid-column:span 7}
+.work-card.narrow{grid-column:span 5}
+.work-stage{display:grid;place-items:center;min-height:260px}
+.work-stage .ui{width:100%;max-width:460px;transition:transform var(--dur-base) var(--ease-out)}
+.work-card:hover .work-stage .ui{transform:translateY(-3px)}
+.work-copy{display:grid;gap:var(--space-2)}
+.work-copy .text{max-width:46ch}
+
+/* ---------- Carte de nuit et chiffres ---------- */
+.night{position:relative;isolation:isolate;display:grid;gap:var(--space-9);padding:var(--space-8);border-radius:var(--radius-xl);background:var(--color-nuit);color:var(--color-sur-nuit);overflow:hidden}
+.night-img{position:absolute;z-index:-1;top:-4%;right:-5%;width:56%;height:auto;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 88%);mask-image:linear-gradient(to bottom,#000 55%,transparent 88%)}
+.night-title{max-width:19ch;color:var(--color-sur-nuit)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats > div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:var(--space-4);padding:0 var(--space-5);border-left:1px solid var(--color-nuit-trait)}
+.stats > div:first-child{padding-left:0;border-left:0}
+.stats dd{display:flex;align-items:baseline;gap:var(--space-1);font-weight:var(--weight-number);font-size:var(--text-number-sm);line-height:.9;letter-spacing:var(--track-number);font-variant-numeric:tabular-nums}
+.stats dd small{font-size:.42em;letter-spacing:0;color:var(--color-sur-nuit-2)}
+.stats dt{max-width:22ch;font-size:var(--text-small);color:var(--color-sur-nuit-2);text-wrap:pretty}
+
+/* ---------- Tableau « Ce que ça change ? » ---------- */
+.compare-scroll{overflow-x:auto;border-radius:var(--radius-xl);box-shadow:inset 0 0 0 1px var(--color-trait)}
+.compare{width:100%;min-width:760px;border-collapse:collapse;background:var(--color-blanc)}
+.compare th,.compare td{padding:var(--space-5);text-align:left;vertical-align:top;border-bottom:1px solid var(--color-trait)}
+.compare tr:last-child td,.compare tr:last-child th{border-bottom:0}
+.compare thead th{padding-block:var(--space-4);font-size:var(--text-small);font-weight:var(--weight-strong);color:var(--color-gris-texte)}
+.compare tbody th{width:24%;font-weight:var(--weight-strong);color:var(--color-encre)}
+.compare tbody th div{display:flex;align-items:center;gap:var(--space-3)}
+.compare tbody th .icon{color:var(--color-action)}
+.compare td{width:25.3%;color:var(--color-texte)}
+.us-head{display:inline-flex;align-items:center;gap:var(--space-2)}
+.us-head svg{width:16px;height:16px}
+.cmp{display:flex;align-items:flex-start;gap:var(--space-3)}
+.mk{display:grid;place-items:center;flex:none;width:22px;height:22px;margin-top:1px;border-radius:50%}
+.mk .icon{width:13px;height:13px;stroke-width:2.5}
+.mk-no{background:var(--color-gris-1);color:var(--color-gris-texte)}
+.mk-yes{background:var(--color-etat-ok);color:var(--color-sur-etat)}
+.compare td.no{color:var(--color-gris-texte)}
+.compare td.no .cmp-t{text-decoration:line-through;text-decoration-color:var(--color-trait-fort);text-decoration-thickness:1px}
+.compare .col-us{background:var(--color-action-voile);box-shadow:inset 2px 0 0 var(--color-action),inset -2px 0 0 var(--color-action)}
+.compare tbody tr:last-child td.col-us{box-shadow:inset 2px 0 0 var(--color-action),inset -2px 0 0 var(--color-action),inset 0 -2px 0 var(--color-action)}
+.compare thead th.col-us{background:var(--color-action);color:var(--color-sur-action);--color-logo-bar:var(--color-sur-nuit-2)}
+.compare td.col-us{font-weight:var(--weight-strong);color:var(--color-encre)}
+.compare td.result{font-weight:var(--weight-strong);color:var(--color-encre)}
+.compare .gain{width:16px;height:16px;margin-top:3px;color:var(--color-action);stroke-width:2}
+.anim .compare-scroll:not(.is-in) .mk-yes{transform:scale(0)}
+.anim .mk-yes{transition:transform var(--dur-base) var(--ease-out);transition-delay:calc(var(--i,0) * 120ms + 300ms)}
+
+/* ---------- Méthode ---------- */
+.steps-line{height:2px;margin-bottom:var(--space-7);border-radius:var(--radius-pill);background:var(--color-gris-2);overflow:hidden}
+.steps-line i{display:block;width:var(--p,100%);height:100%;background:var(--color-action);transition:width 1.8s var(--ease-out)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.steps li{display:grid;align-content:start;gap:var(--space-4);padding:0 var(--space-5);border-left:1px solid var(--color-trait)}
+.steps li:first-child{padding-left:0;border-left:0}
+.step-n{font-weight:var(--weight-number);font-size:var(--text-number-sm);line-height:.9;letter-spacing:var(--track-number);color:var(--color-ton-2);font-variant-numeric:tabular-nums}
+.steps p{font-size:var(--text-small);color:var(--color-texte);text-wrap:pretty}
+
+/* ---------- Garantie ---------- */
+.guarantee{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-7);align-items:center;padding:var(--space-8);border-radius:var(--radius-xl);background:var(--color-gris-1)}
+.guarantee-copy{display:grid;gap:var(--space-5);justify-items:start}
+.guarantee .chip{background:var(--color-blanc)}
+.swap{position:relative;display:grid;grid-template-areas:"one";width:100%;max-width:460px;justify-self:end}
+.swap .rdv{grid-area:one}
+.swap-old{opacity:0}
+.swap-old .who b{text-decoration:line-through;text-decoration-color:var(--color-gris-texte)}
+
+/* ---------- Questions ---------- */
+.faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-7);align-items:start}
+.faq-intro{position:sticky;top:calc(var(--nav-h) + var(--space-6));display:grid;gap:var(--space-5);justify-items:start}
+.faq details{border-top:1px solid var(--color-trait)}
+.faq details:last-child{border-bottom:1px solid var(--color-trait)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:var(--space-5);padding:var(--space-5) 0;list-style:none;cursor:pointer;font-size:var(--text-title);line-height:var(--leading-title);letter-spacing:var(--track-title);color:var(--color-encre)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .icon{color:var(--color-action);transition:transform var(--dur-base) var(--ease-out)}
+.faq details[open] summary .icon{transform:rotate(45deg)}
+.faq details p{max-width:60ch;padding-bottom:var(--space-5);color:var(--color-texte)}
+
+/* ---------- Appel et formulaire ---------- */
+.final{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-7);align-items:start}
+.final-copy{display:grid;gap:var(--space-5);align-content:start}
+.reassure{display:grid;gap:var(--space-3);margin-top:var(--space-2)}
+.reassure li{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-small);color:var(--color-encre)}
+.reassure .icon{color:var(--color-action)}
+.final-form{padding:var(--space-7);border-radius:var(--radius-xl);background:var(--color-gris-1)}
+.lead-form{display:grid;gap:var(--space-5)}
+.lf-step{display:grid;gap:var(--space-5);min-width:0;border:0}
+.bar{height:4px;border-radius:var(--radius-pill);background:var(--color-gris-2);overflow:hidden}
+.bar i{display:block;width:var(--p,33%);height:100%;border-radius:inherit;background:var(--color-action);transition:width var(--dur-reveal) var(--ease-out)}
+.lf-progress{display:grid;gap:var(--space-2);font-size:var(--text-caption);font-weight:var(--weight-strong);color:var(--color-gris-texte)}
+.lf-q{padding:0;font-weight:var(--weight-strong);font-size:var(--text-title);line-height:var(--leading-title);letter-spacing:var(--track-title);color:var(--color-encre);outline:none}
+legend.lf-q{float:left;width:100%;margin-bottom:var(--space-1)}
+legend.lf-q + *{clear:both}
+.lf-hint{margin-top:calc(-1 * var(--space-3));font-size:var(--text-small);color:var(--color-gris-texte)}
+/* Métiers : sélecteur déroulant à cases (plusieurs choix) */
+.msel{display:grid;gap:var(--space-2)}
+.msel-btn{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);width:100%;min-height:var(--button-h);padding:0 var(--space-4) 0 var(--space-4);border:0;border-radius:var(--radius-md);background:var(--color-blanc);box-shadow:inset 0 0 0 1px var(--color-trait-fort);font:var(--weight-body) var(--text-body) var(--font);color:var(--color-gris-texte);text-align:left;cursor:pointer;transition:box-shadow var(--dur-fast) var(--ease)}
+.msel.has-value .msel-btn{color:var(--color-encre);font-weight:var(--weight-strong)}
+.msel-btn:hover{box-shadow:inset 0 0 0 1px var(--color-gris-texte)}
+.msel.is-open .msel-btn,.msel-btn:focus-visible{outline:none;box-shadow:inset 0 0 0 1.5px var(--color-action),0 0 0 4px var(--color-action-voile)}
+.msel-btn[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px var(--color-erreur)}
+.msel-value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.msel-chev{color:var(--color-gris-texte);transition:transform var(--dur-base) var(--ease-out)}
+.msel.is-open .msel-chev{transform:rotate(180deg)}
+.msel-panel{display:grid;gap:2px;padding:var(--space-2);border-radius:var(--radius-md);background:var(--color-blanc);box-shadow:var(--shadow-ui),0 0 0 1px var(--color-trait)}
+.anim .msel-panel:not([hidden]){animation:menu-in var(--dur-base) var(--ease-out)}
+.msel-opt{position:relative;display:flex;align-items:center;gap:var(--space-3);min-height:44px;padding:0 var(--space-3);border-radius:var(--radius-sm);font-size:var(--text-body);color:var(--color-encre);cursor:pointer;transition:background-color var(--dur-fast) var(--ease)}
+.msel-opt:hover{background:var(--color-gris-1)}
+.msel-opt input{position:absolute;width:1px;height:1px;opacity:0}
+.msel-box{display:grid;place-items:center;flex:none;width:20px;height:20px;border-radius:var(--radius-xs);background:var(--color-blanc);box-shadow:inset 0 0 0 1.5px var(--color-trait-fort);color:var(--color-sur-action);transition:background-color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
+.msel-box .icon{width:14px;height:14px;stroke-width:2.5;opacity:0;transition:opacity var(--dur-fast) var(--ease)}
+.msel-opt input:checked + .msel-box{background:var(--color-action);box-shadow:none}
+.msel-opt input:checked + .msel-box .icon{opacity:1}
+.msel-opt input:focus-visible + .msel-box{outline:2px solid var(--color-action);outline-offset:2px}
+/* Rayon, volume, moment : sélecteurs à segments (un seul choix) */
+.opts{display:flex;gap:2px;padding:var(--space-1);border-radius:var(--radius-pill);background:var(--color-gris-2)}
+.opt{position:relative;flex:1 1 auto;min-width:0;cursor:pointer}
+.opt input{position:absolute;width:1px;height:1px;opacity:0}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:40px;padding:0 var(--space-3);border-radius:var(--radius-pill);font-size:var(--text-small);font-weight:var(--weight-strong);color:var(--color-texte);white-space:nowrap;transition:background-color var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
+@media (hover:hover){.opt:hover span{color:var(--color-encre)}}
+.opt input:checked + span{background:var(--color-blanc);color:var(--color-encre);box-shadow:var(--shadow-ui)}
+.opt input:focus-visible + span{outline:2px solid var(--color-action);outline-offset:2px}
+.field{display:grid;gap:var(--space-2)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+.field label,.field-label{font-size:var(--text-small);font-weight:var(--weight-strong);color:var(--color-encre)}
+.opt-label{font-weight:var(--weight-body);color:var(--color-gris-texte)}
+.field input[type="text"],.field input[type="tel"]{height:48px;padding:0 var(--space-4);border:0;border-radius:var(--radius-md);background:var(--color-blanc);box-shadow:inset 0 0 0 1px var(--color-trait-fort);font:var(--weight-body) var(--text-body) var(--font);color:var(--color-encre);transition:box-shadow var(--dur-fast) var(--ease)}
+.field input::placeholder{color:var(--color-gris-texte)}
+.field input:hover{box-shadow:inset 0 0 0 1px var(--color-gris-texte)}
+.field input:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--color-action),0 0 0 4px var(--color-action-voile)}
+.field input[aria-invalid="true"]{box-shadow:inset 0 0 0 1.5px var(--color-erreur)}
+.lf-error{font-size:var(--text-small);color:var(--color-erreur)}
+.lf-error a{color:inherit}
+.hp{display:none}
+.btn:disabled{opacity:.7;cursor:progress}
+.lf-legal{font-size:var(--text-caption);color:var(--color-gris-texte)}
+.lf-legal a{color:var(--color-action)}
+.lf-nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding-top:var(--space-2)}
+.lf-nav .btn{margin-left:auto}
+.lf-back{padding:var(--space-3) 0;border:0;background:none;font:var(--weight-strong) var(--text-small) var(--font);color:var(--color-gris-texte);text-decoration:underline;text-decoration-color:var(--color-trait-fort);cursor:pointer}
+.lf-back:hover{color:var(--color-encre)}
+.lf-done{display:grid;gap:var(--space-3);justify-items:start}
+.lf-done-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--color-etat-ok);color:var(--color-sur-etat)}
+.anim .lf-enter{animation:step-in var(--dur-base) var(--ease-out)}
+@keyframes step-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- Pied de page ---------- */
+.footer{padding:var(--space-9) 0 var(--space-6);background:var(--color-nuit);color:var(--color-sur-nuit)}
+.footer-sign{font-weight:var(--weight-display);font-size:var(--text-display);line-height:var(--leading-display);letter-spacing:var(--track-display)}
+.footer-grid{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-6);align-items:center;margin-top:var(--space-9);padding-top:var(--space-6);border-top:1px solid var(--color-nuit-trait)}
+.footer nav{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-6);justify-content:center}
+.footer nav a,.footer .contact{font-size:var(--text-small);color:var(--color-sur-nuit-2);text-decoration:none}
+.footer nav a:hover{color:var(--color-sur-nuit)}
+.footer .contact b{color:var(--color-sur-nuit);font-weight:var(--weight-strong)}
+.footer-legal{display:flex;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-6);font-size:var(--text-caption);color:var(--color-sur-nuit-3)}
+.footer-legal a{text-decoration:none}
+.footer-legal nav{justify-content:flex-end;gap:var(--space-2) var(--space-5)}
+.footer-legal nav a{font-size:var(--text-caption);color:var(--color-sur-nuit-3)}
+.footer-legal nav a:hover{color:var(--color-sur-nuit)}
+
+/* ---------- Micro-animations : une fois à l'arrivée, puis au survol ---------- */
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes fade-up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes timer{from{stroke-dasharray:0 60}to{stroke-dasharray:37 60}}
+@keyframes drop{0%{opacity:0;transform:translateY(-18px) scale(.96)}60%{opacity:1;transform:translateY(2px)}100%{transform:none}}
+@keyframes absent{0%,30%{opacity:1;filter:none}100%{opacity:0;filter:grayscale(1)}}
+@keyframes arrive{0%,45%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+.anim .play .account{animation:fade-up .5s var(--ease-out) both}
+.anim .play .account:nth-child(2){animation-delay:.2s}.anim .play .account:nth-child(3){animation-delay:.45s}.anim .play .account:nth-child(4){animation-delay:.7s}
+.anim .play .timer-fill{animation:timer 1.6s linear both;animation-delay:.2s}
+.anim .play .checks li{animation:fade-up .4s var(--ease-out) both}
+.anim .play .checks .ok{animation:pop .4s var(--ease-out) both}
+.anim .play .checks li:nth-child(1),.anim .play .checks li:nth-child(1) .ok{animation-delay:.2s}
+.anim .play .checks li:nth-child(2),.anim .play .checks li:nth-child(2) .ok{animation-delay:.5s}
+.anim .play .checks li:nth-child(3),.anim .play .checks li:nth-child(3) .ok{animation-delay:.8s}
+.anim .play .checks li:nth-child(4),.anim .play .checks li:nth-child(4) .ok{animation-delay:1.1s}
+.anim .play .ui-head .state-ok{animation:pop .4s var(--ease-out) both;animation-delay:1.4s}
+.anim .play .invite-title{animation:drop .7s var(--ease-out) both;animation-delay:.3s}
+.anim .play .invite-rows li{animation:fade-up .4s var(--ease-out) both}
+.anim .play .invite-rows li:nth-child(1){animation-delay:.7s}.anim .play .invite-rows li:nth-child(2){animation-delay:.85s}.anim .play .invite-rows li:nth-child(3){animation-delay:1s}
+.anim .play.swap .swap-old{animation:absent 1.4s var(--ease) both;animation-delay:.3s}
+.anim .play.swap .swap-new{animation:arrive 1.6s var(--ease-out) both;animation-delay:.3s}
+html:not(.anim) .swap-old{display:none}
+
+/* ---------- Tablette ---------- */
+@media (max-width:1080px){
+  .nav-links,.nav-client{display:none}
+  .nav-menu-btn{display:grid}
+  .nav-right{margin-left:auto;gap:var(--space-2)}
+  .trades{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:30%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
+  .trades::-webkit-scrollbar{display:none}
+  .trades li{scroll-snap-align:start}
+  .proof{padding:var(--space-7) var(--space-7) var(--space-6)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6) 0}
+  .stats > div:nth-child(3){padding-left:0;border-left:0}
+  .night-img{width:78%;right:-24%;top:-2%}
+}
+
+/* ---------- Petite tablette ---------- */
+@media (max-width:800px){
+  .head-a,.head-b,.faq,.final,.guarantee{grid-template-columns:1fr}
+  .head-a{gap:var(--space-4)}
+  .head-a > .title{padding-top:0}
+  .head-b{gap:var(--space-4);margin-bottom:var(--space-7)}
+  .clients-row{grid-template-columns:1fr;gap:var(--space-4)}
+  .proof-copy{grid-template-columns:1fr;gap:var(--space-5)}
+  .work-card,.work-card.wide,.work-card.narrow{grid-column:1 / -1}
+  .steps{grid-template-columns:1fr}
+  .steps li,.steps li:first-child{grid-template-columns:72px minmax(0,1fr);gap:var(--space-2) var(--space-4);padding:var(--space-5) 0;border-left:0;border-top:1px solid var(--color-trait)}
+  .steps li .step-n{grid-row:span 2}
+  .steps-line{margin-bottom:0}
+  .faq-intro{position:static}
+  .guarantee{padding:var(--space-6)}
+  .swap{justify-self:stretch;max-width:none}
+  .compare-scroll{overflow:visible;border-radius:0;box-shadow:none}
+  .compare{min-width:0;background:transparent}
+  .compare thead{display:none}
+  .compare,.compare tbody{display:grid;gap:var(--space-3)}
+  .compare tr{display:grid;gap:var(--space-2);padding:var(--space-4);border-radius:var(--radius-lg);background:var(--color-blanc);box-shadow:inset 0 0 0 1px var(--color-trait)}
+  .compare th,.compare td,.compare tr:last-child td,.compare tr:last-child th{display:grid;gap:var(--space-1);width:auto;padding:0;border:0;background:transparent}
+  .compare tbody th{width:auto;font-size:var(--text-body)}
+  .compare td{font-size:var(--text-small)}
+  .compare td::before{content:attr(data-label);font-size:var(--text-micro);font-weight:var(--weight-strong);color:var(--color-gris-texte)}
+  .compare td.col-us,.compare tbody tr:last-child td.col-us{padding:var(--space-3);border-radius:var(--radius-md);background:var(--color-action-voile);box-shadow:inset 0 0 0 1.5px var(--color-action)}
+  .compare td.col-us::before{color:var(--color-action)}
+  .compare tr td.no,.compare tr td.result{padding-inline:var(--space-3)}
+  .footer-grid{grid-template-columns:1fr;justify-items:start}
+  .footer nav{justify-content:flex-start}
+}
+
+/* ---------- Téléphone ---------- */
+@media (max-width:560px){
+  .hide-sm{display:none}
+  .show-sm{display:inline}
+  .nav-bar{gap:var(--space-3)}
+  .logo{letter-spacing:.16em}
+  .btn-nav .btn-tile{display:none}
+  .btn-nav{padding:0 var(--space-4)}
+  .hero{--arc-top:2%;min-height:clamp(640px,100svh,760px);padding-top:calc(var(--nav-h) + var(--space-7));gap:var(--space-7)}
+  .hero-foot{grid-template-columns:1fr;gap:var(--space-5)}
+  .hero-lead{font-size:var(--text-body)}
+  .actions{width:100%;flex-direction:column}
+  .actions .btn{width:100%;justify-content:space-between}
+  .hero-promises{justify-items:start}
+  .sec:first-child{padding-top:var(--space-6)}
+  .trades{grid-auto-columns:42%;gap:var(--space-2);margin-top:var(--space-6)}
+  .trades figcaption{left:var(--space-2);bottom:var(--space-2);padding:2px var(--space-2);font-size:var(--text-micro)}
+  .proof{padding:var(--space-5);gap:var(--space-6)}
+  .proof-light{bottom:-14%;height:56%;left:-50%;right:-50%;-webkit-mask-image:none;mask-image:none}
+  .shot-desk{display:none}
+  .proof-shots{padding-right:0;margin-bottom:0}
+  .shot-phone{position:relative;right:auto;bottom:auto;width:72%;margin-inline:auto}
+  .pv-toast{left:6%;right:6%;width:auto;top:14%}
+  .logo-row li{padding-inline:var(--space-5)}
+  .logo-row img{height:22px}
+  .logo-row .is-mark img{height:32px}
+  .work{gap:var(--space-3)}
+  .work-card{padding:var(--space-4);gap:var(--space-5)}
+  .work-stage{min-height:0}
+  .work-stage .ui{padding:var(--space-3)}
+  .work-copy .text{font-size:var(--text-small)}
+  .account{grid-template-columns:var(--avatar) minmax(0,1fr)}
+  .account .chip{grid-column:2;justify-self:start}
+  .checks li{grid-template-columns:20px minmax(0,1fr)}
+  .checks li span:last-child{grid-column:2}
+  .night{padding:var(--space-5);gap:var(--space-8)}
+  .night-img{width:116%;top:-5%;right:-46%;opacity:.5}
+  .stats dd{font-size:var(--text-number-sm)}
+  .stats > div{padding:0 var(--space-4)}
+  .rdv{grid-template-columns:52px minmax(0,1fr)}
+  .rdv .state{grid-column:2;justify-self:start}
+  .faq summary{font-size:var(--text-body);padding:var(--space-4) 0}
+  .final-form{padding:var(--space-5)}
+  .field-row{grid-template-columns:1fr}
+  .lf-nav{flex-direction:column-reverse;align-items:stretch}
+  .lf-nav .btn{width:100%;justify-content:space-between;margin-left:0}
+  .lf-back{align-self:center}
+  .faq-intro .btn{width:100%;justify-content:space-between}
+  .footer{padding-top:var(--space-8)}
+  .footer-legal{flex-direction:column}
+  .footer-legal nav{justify-content:flex-start}
+}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-e" viewBox="0 0 120 120"><path fill="currentColor" d="M24 26a8 8 0 0 1 8-8h58a7 7 0 0 1 0 14H38v56h52a7 7 0 0 1 0 14H32a8 8 0 0 1-8-8Z"/><rect x="48" y="53" width="60" height="14" rx="7" style="fill:var(--color-logo-bar)"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.2 7 10 4-1.8 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5h14a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19 17h-8l-4.5 3.5V17H5a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 5 5Z"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4 18h3v-4H4zM10.5 18h3V10h-3zM17 18h3V6h-3z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4.5l3 2"/></symbol>
+</svg>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-bar">
+      <a class="logo" href="#top" aria-label="Entremis, accueil"><svg aria-hidden="true"><use href="#logo-e"/></svg><span>ENTREMIS</span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#ce-quon-fait">Ce qu'on fait</a>
+        <a href="#methode">Méthode</a>
+        <a href="#garantie">Garantie</a>
+        <a href="#questions">Questions</a>
+      </nav>
+      <div class="nav-right">
+        <a class="nav-client" href="#espace-client">Espace client</a>
+        <a class="btn btn-sm btn-nav" href="#appel"><span class="hide-sm">Réserver un appel</span><span class="show-sm">Réserver</span><span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+        <button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Ouvrir le menu"><svg class="icon i-open"><use href="#i-menu"/></svg><svg class="icon i-close"><use href="#i-close"/></svg></button>
+      </div>
+    </div>
+    <nav class="nav-menu" id="nav-menu" aria-label="Menu" hidden>
+      <a href="#ce-quon-fait">Ce qu'on fait<svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#methode">Méthode<svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#garantie">Garantie<svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#questions">Questions<svg class="icon"><use href="#i-arrow"/></svg></a>
+      <div class="nav-menu-actions">
+        <a class="btn btn-secondary" href="#espace-client">Espace client<span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn-primary" href="#appel">Réserver un appel de 20 min<span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top" aria-labelledby="h-hero">
+  <div class="hero-media" aria-hidden="true"><img src="img/2-eclipse.jpg" alt="" width="1536" height="864" fetchpriority="high"></div>
+  <div class="wrap">
+    <h1 class="t-hero" id="h-hero">Des particuliers prêts à signer, <span class="tone">livrés dans votre agenda</span></h1>
+  </div>
+  <div class="wrap hero-foot">
+    <div class="hero-copy">
+      <p class="hero-lead"><span class="hide-sm">On trouve les particuliers de votre zone qui ont un projet, on les rappelle, on vérifie, et on cale la visite dans votre agenda.</span><span class="show-sm">Des particuliers de votre zone, avec un vrai projet. On cale la visite dans votre agenda.</span></p>
+      <div class="actions">
+        <a class="btn btn-light" href="#appel"><span>Réserver un appel de 20 min</span><span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+        <a class="btn btn-ghost" href="#methode"><span>Voir la méthode</span><span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+      </div>
+    </div>
+    <ul class="hero-promises">
+      <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Demandes réservées à vous seul, jamais revendues</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>10 rendez-vous en 21 jours, garantis ou remplacés</li>
+    </ul>
+  </div>
+</section>
+
+<main class="sheet" id="contenu">
+
+<section class="sec" aria-labelledby="h-pour">
+  <div class="wrap">
+    <div class="head-a">
+      <h2 class="title" id="h-pour">Pour les artisans et installateurs</h2>
+      <p class="t-statement">Vous intervenez chez des particuliers&nbsp;? <span class="tone">On vous trouve des visites près de chez vous.</span></p>
+    </div>
+    <ul class="trades">
+      <li><figure><img src="img/photos/pac.jpg" alt="Pompe à chaleur installée dans le jardin d'une maison" loading="lazy" width="1000" height="667"><figcaption>Pompes à chaleur</figcaption></figure></li>
+      <li><figure><img src="img/photos/solaire.jpg" alt="Installateur qui pose un panneau solaire sur un toit" loading="lazy" width="1400" height="1050"><figcaption>Panneaux solaires</figcaption></figure></li>
+      <li><figure><img src="img/photos/clim.jpg" alt="Technicien qui contrôle l'unité extérieure d'une climatisation" loading="lazy" width="1000" height="667"><figcaption>Climatisation</figcaption></figure></li>
+      <li><figure><img src="img/photos/chauffage.jpg" alt="Mains gantées qui règlent une chaudière" loading="lazy" width="1000" height="667"><figcaption>Chauffage</figcaption></figure></li>
+      <li><figure><img src="img/photos/plomberie.jpg" alt="Raccord d'un radiateur par un plombier" loading="lazy" width="1000" height="667"><figcaption>Plomberie</figcaption></figure></li>
+      <li><figure><img src="img/photos/serrurerie.jpg" alt="Serrure de porte avec ses clés" loading="lazy" width="1000" height="620"><figcaption>Serrurerie</figcaption></figure></li>
+    </ul>
+    <p class="trades-more">Et aussi&nbsp;: isolation, rénovation énergétique, portes blindées, dépannage.</p>
+  </div>
+</section>
+
+<section class="sec" id="espace-client" aria-labelledby="h-preuve">
+  <div class="wrap">
+    <div class="proof">
+      <div class="proof-light" aria-hidden="true"><img src="img/faisceau-lumiere.webp" alt="" loading="lazy" width="1200" height="675"></div>
+      <div class="proof-copy">
+        <h2 class="proof-title" id="h-preuve"><span class="t-number">10</span><span class="t-statement">visites qualifiées en 21&nbsp;jours, <span class="tone">garanties ou remplacées</span></span></h2>
+        <div class="proof-side"><p class="text">Vous suivez chacune dans votre espace client&nbsp;: la demande, l'appel, la fiche, puis la visite dans votre agenda.</p><p class="example">Écrans réels de l'espace client, avec des données d'exemple.</p></div>
+      </div>
+      <div class="proof-shots">
+        <figure class="shot-desk"><img src="img/espace-client-ordinateur.webp" alt="Accueil de l'espace client sur ordinateur : comment ça marche, prochain rendez-vous à 11 h 30, objectif de la campagne 8 sur 10. Données d'exemple." width="1680" height="1019" loading="lazy"></figure>
+        <figure class="shot-phone"><img src="img/espace-client-telephone.webp" alt="Accueil de l'espace client sur téléphone. Données d'exemple." width="720" height="1526" loading="lazy"></figure>
+        <div class="ui notif-card pv-toast" aria-hidden="true">
+          <div class="notif"><span class="mark-ico"><svg class="icon"><use href="#i-plus"/></svg></span><div><b>Nouvelle visite</b><span>Ven. 21 · 09:00 · Pompe à chaleur, Caluire</span></div><span class="example tabnum">à l'instant</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-clients">
+  <div class="wrap clients-row">
+    <h2 id="h-clients">Ils travaillent avec Entremis</h2>
+    <div class="marquee">
+      <div class="marquee-track">
+        <ul class="logo-row"><li class=""><img src="img/logos/logo-occium.png" alt="Occium" loading="lazy"></li><li class=""><img src="img/logos/logo-radeos.png" alt="Radeos Labs" loading="lazy"></li><li class=""><img src="img/logos/logo-vagoda.png" alt="Vagoda" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-baleine.png" alt="Logo client" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-soleil.png" alt="Logo client" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-main.png" alt="Logo client" loading="lazy"></li></ul>
+        <ul class="logo-row" aria-hidden="true"><li class=""><img src="img/logos/logo-occium.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-radeos.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-vagoda.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-baleine.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-soleil.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-main.png" alt="" loading="lazy"></li></ul>
+        <ul class="logo-row" aria-hidden="true"><li class=""><img src="img/logos/logo-occium.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-radeos.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-vagoda.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-baleine.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-soleil.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-main.png" alt="" loading="lazy"></li></ul>
+        <ul class="logo-row" aria-hidden="true"><li class=""><img src="img/logos/logo-occium.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-radeos.png" alt="" loading="lazy"></li><li class=""><img src="img/logos/logo-vagoda.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-baleine.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-soleil.png" alt="" loading="lazy"></li><li class="is-mark"><img src="img/logos/logo-main.png" alt="" loading="lazy"></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-confie">
+  <div class="wrap head-a">
+    <h2 class="title" id="h-confie">Ce que vous nous confiez</h2>
+    <p class="t-statement">Chercher des clients, rappeler, se déplacer pour rien&nbsp;: laissez-nous cette partie. <span class="tone">Gardez les chantiers.</span></p>
+  </div>
+</section>
+
+<section class="sec" id="ce-quon-fait" aria-labelledby="h-fait">
+  <div class="wrap">
+    <div class="head-b">
+      <h2 class="t-display" id="h-fait">Tout ce qui se passe avant la visite, on s'en occupe</h2>
+      <div class="head-b-side"><p class="text"><span class="hide-sm">Vous nous dites votre métier et votre zone. Vous recevez des visites chez des particuliers propriétaires, qui ont un projet et un budget.</span><span class="show-sm">Votre métier, votre zone. Vous recevez des visites chez des propriétaires qui ont un projet.</span></p></div>
+    </div>
+    <div class="work">
+      <article class="work-card wide" data-play>
+        <div class="work-stage">
+          <div class="ui">
+            <div class="ui-head"><span><svg class="icon"><use href="#i-search"/></svg>Demandes reçues cette semaine</span><span class="tabnum">3 sur 38</span></div>
+            <div class="account"><img class="avatar-photo" src="img/faces/sophie.jpg" alt="" width="64" height="64" loading="lazy"><div><b>Sophie Marchal</b><span>Maison de 1975 · chaudière fioul · Villeurbanne</span></div><span class="chip"><svg class="icon"><use href="#i-signal"/></svg>Pompe à chaleur</span></div>
+            <div class="account"><img class="avatar-photo" src="img/faces/karim.jpg" alt="" width="64" height="64" loading="lazy"><div><b>Karim Benali</b><span>Facture d'électricité 210 € par mois · Bron</span></div><span class="chip"><svg class="icon"><use href="#i-signal"/></svg>Panneaux solaires</span></div>
+            <div class="account"><img class="avatar-photo" src="img/faces/julien.jpg" alt="" width="64" height="64" loading="lazy"><div><b>Julien Roche</b><span>Porte d'entrée forcée la semaine dernière · Lyon 3e</span></div><span class="chip"><svg class="icon"><use href="#i-signal"/></svg>Porte blindée</span></div>
+            <p class="example">Exemple</p>
+          </div>
+        </div>
+        <div class="work-copy"><h3 class="title">On trouve les particuliers qui ont un projet</h3><p class="text"><span class="hide-sm">On fait venir les demandes de votre zone et de votre métier, puis on garde seulement celles qui cachent un vrai chantier. Chaque demande est pour vous seul.</span><span class="show-sm">Des demandes de votre zone, triées. Chacune est pour vous seul.</span></p></div>
+      </article>
+      <article class="work-card narrow" data-play>
+        <div class="work-stage">
+          <div class="ui">
+            <div class="thread">
+              <div class="msg msg-in">Bonjour, je voudrais un devis pour une pompe à chaleur.</div>
+              <div class="msg msg-out">Bonjour Sophie, merci pour votre demande. Je vous appelle dans 2 minutes pour préparer la visite, ça vous va&nbsp;?</div>
+              <div class="msg-meta"><span>10:02:14 → 10:02:51</span><b class="timer"><svg viewBox="0 0 20 20" aria-hidden="true"><circle class="timer-track" cx="10" cy="10" r="8"/><circle class="timer-fill" cx="10" cy="10" r="8" pathLength="60"/></svg><span>37</span> secondes</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="work-copy"><h3 class="title">Une réponse en moins d'une minute</h3><p class="text"><span class="hide-sm">Un particulier qui demande un devis contacte souvent plusieurs artisans. Le premier qui rappelle prend l'avance. On rappelle pour vous, même quand vous êtes sur un chantier.</span><span class="show-sm">Le premier qui rappelle prend l'avance. On rappelle pour vous, même pendant vos chantiers.</span></p></div>
+      </article>
+      <article class="work-card narrow" data-play>
+        <div class="work-stage">
+          <div class="ui">
+            <div class="ui-head"><span><svg class="icon"><use href="#i-filter"/></svg>Fiche · Sophie Marchal</span><span class="state state-ok">4 / 4</span></div>
+            <ul class="checks">
+              <li><span class="ok"><svg class="icon"><use href="#i-check"/></svg></span><b>Projet</b><span>Pompe à chaleur à la place du fioul</span></li>
+              <li><span class="ok"><svg class="icon"><use href="#i-check"/></svg></span><b>Logement</b><span>Maison de 120 m², propriétaire</span></li>
+              <li><span class="ok"><svg class="icon"><use href="#i-check"/></svg></span><b>Budget</b><span>Entre 12 et 15 k€</span></li>
+              <li><span class="ok"><svg class="icon"><use href="#i-check"/></svg></span><b>Délai</b><span>Travaux avant l'hiver</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="work-copy"><h3 class="title">Qualifié par une personne</h3><p class="text"><span class="hide-sm">Un appel avec le particulier avant chaque visite. S'il n'est pas propriétaire ou n'a pas de vrai projet, pas de rendez-vous.</span><span class="show-sm">Un appel avant chaque visite. Pas propriétaire ou pas de vrai projet&nbsp;: pas de rendez-vous.</span></p></div>
+      </article>
+      <article class="work-card wide" data-play>
+        <div class="work-stage">
+          <div class="ui">
+            <div class="ui-head"><span><svg class="icon"><use href="#i-cal"/></svg>Ajouté à votre agenda</span><span class="state state-ok">Confirmée</span></div>
+            <div class="invite-when"><b>Mardi 18 novembre</b><span>10:30 – 11:30</span></div>
+            <p class="invite-title">Visite technique · Pompe à chaleur</p>
+            <ul class="invite-rows">
+              <li><img class="avatar-photo invite-face" src="img/faces/sophie.jpg" alt="" width="40" height="40" loading="lazy">Sophie Marchal · propriétaire</li>
+              <li><svg class="icon"><use href="#i-pin"/></svg>14 rue des Tilleuls, Villeurbanne</li>
+              <li><svg class="icon"><use href="#i-file"/></svg>Fiche jointe · 4 critères validés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="work-copy"><h3 class="title">Dans votre agenda, avec la fiche</h3><p class="text"><span class="hide-sm">La visite arrive dans votre calendrier avec l'adresse, le projet et ce que le client a déjà fait. Vous arrivez préparé.</span><span class="show-sm">Avec l'adresse, le projet et ce que le client a déjà fait.</span></p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-chiffres">
+  <div class="wrap">
+    <div class="night">
+      <img class="night-img" src="img/1-e-verre.jpg" alt="" width="1536" height="864" loading="lazy" aria-hidden="true">
+      <h2 class="t-statement night-title" id="h-chiffres">Chaque visite, c'est un particulier joint, vérifié, <span class="tone">et prêt à vous recevoir</span></h2>
+      <dl class="stats">
+        <div><dt>visites en 21 jours, garanties ou remplacées</dt><dd><span>10</span></dd></div>
+        <div><dt>seul artisan par demande&nbsp;: vous</dt><dd><span>1</span></dd></div>
+        <div><dt>critères vérifiés avant chaque visite</dt><dd><span>4</span></dd></div>
+        <div><dt>minute au plus pour rappeler le particulier</dt><dd aria-label="Moins d'une minute"><small aria-hidden="true">&lt;</small><span>1</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-compare">
+  <div class="wrap">
+    <div class="head-b">
+      <h2 class="t-display" id="h-compare">Ce que ça change pour votre entreprise</h2>
+      <div class="head-b-side"><p class="text">Vous restez sur vos chantiers. Les visites arrivent dans votre agenda.</p></div>
+    </div>
+    <div class="compare-scroll" tabindex="0" role="region" aria-label="Comparaison, faites défiler sur téléphone" data-reveal>
+      <table class="compare">
+        <thead><tr><th scope="col"><span class="sr-only">Étape</span></th><th scope="col">Sans Entremis</th><th scope="col" class="col-us"><span class="us-head"><svg aria-hidden="true"><use href="#logo-e"/></svg>Avec Entremis</span></th><th scope="col">Ce que ça change&nbsp;?</th></tr></thead>
+        <tbody>
+          <tr style="--i:0"><th scope="row"><div><svg class="icon"><use href="#i-search"/></svg>Trouver des clients</div></th><td class="no" data-label="Sans Entremis"><div class="cmp"><span class="mk mk-no"><svg class="icon"><use href="#i-close"/></svg></span><span class="cmp-t">Bouche-à-oreille, leads achetés en ligne</span></div></td><td class="col-us" data-label="Avec Entremis"><div class="cmp"><span class="mk mk-yes"><svg class="icon"><use href="#i-check"/></svg></span><span class="cmp-t">Des demandes de votre zone, triées chaque jour</span></div></td><td class="result" data-label="Ce que ça change ?"><div class="cmp"><svg class="icon gain" aria-hidden="true"><use href="#i-arrow"/></svg><span class="cmp-t">Votre agenda se remplit</span></div></td></tr>
+          <tr style="--i:1"><th scope="row"><div><svg class="icon"><use href="#i-lock"/></svg>Demande partagée&nbsp;?</div></th><td class="no" data-label="Sans Entremis"><div class="cmp"><span class="mk mk-no"><svg class="icon"><use href="#i-close"/></svg></span><span class="cmp-t">La même demande vendue à plusieurs artisans</span></div></td><td class="col-us" data-label="Avec Entremis"><div class="cmp"><span class="mk mk-yes"><svg class="icon"><use href="#i-check"/></svg></span><span class="cmp-t">Une demande, un seul artisan&nbsp;: vous</span></div></td><td class="result" data-label="Ce que ça change ?"><div class="cmp"><svg class="icon gain" aria-hidden="true"><use href="#i-arrow"/></svg><span class="cmp-t">Pas de course au devis le moins cher</span></div></td></tr>
+          <tr style="--i:2"><th scope="row"><div><svg class="icon"><use href="#i-clock"/></svg>Rappeler un particulier</div></th><td class="no" data-label="Sans Entremis"><div class="cmp"><span class="mk mk-no"><svg class="icon"><use href="#i-close"/></svg></span><span class="cmp-t">Le soir, après le chantier</span></div></td><td class="col-us" data-label="Avec Entremis"><div class="cmp"><span class="mk mk-yes"><svg class="icon"><use href="#i-check"/></svg></span><span class="cmp-t">En moins d'une minute</span></div></td><td class="result" data-label="Ce que ça change ?"><div class="cmp"><svg class="icon gain" aria-hidden="true"><use href="#i-arrow"/></svg><span class="cmp-t">Vous êtes le premier à répondre</span></div></td></tr>
+          <tr style="--i:3"><th scope="row"><div><svg class="icon"><use href="#i-filter"/></svg>Vérifier le projet</div></th><td class="no" data-label="Sans Entremis"><div class="cmp"><span class="mk mk-no"><svg class="icon"><use href="#i-close"/></svg></span><span class="cmp-t">Sur place, après le déplacement</span></div></td><td class="col-us" data-label="Avec Entremis"><div class="cmp"><span class="mk mk-yes"><svg class="icon"><use href="#i-check"/></svg></span><span class="cmp-t">Au téléphone, avant la visite</span></div></td><td class="result" data-label="Ce que ça change ?"><div class="cmp"><svg class="icon gain" aria-hidden="true"><use href="#i-arrow"/></svg><span class="cmp-t">Moins de devis pour des curieux</span></div></td></tr>
+          <tr style="--i:4"><th scope="row"><div><svg class="icon"><use href="#i-swap"/></svg>Client absent</div></th><td class="no" data-label="Sans Entremis"><div class="cmp"><span class="mk mk-no"><svg class="icon"><use href="#i-close"/></svg></span><span class="cmp-t">Le déplacement est perdu</span></div></td><td class="col-us" data-label="Avec Entremis"><div class="cmp"><span class="mk mk-yes"><svg class="icon"><use href="#i-check"/></svg></span><span class="cmp-t">Remplacé, sans frais</span></div></td><td class="result" data-label="Ce que ça change ?"><div class="cmp"><svg class="icon gain" aria-hidden="true"><use href="#i-arrow"/></svg><span class="cmp-t">L'objectif reste tenu</span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="methode" aria-labelledby="h-methode">
+  <div class="wrap">
+    <div class="head-b">
+      <h2 class="t-display" id="h-methode">Quatre étapes, et vous voyez chacune avancer</h2>
+      <div class="head-b-side"><p class="text"><span class="hide-sm">Tout se suit dans votre espace client&nbsp;: les demandes, les appels, les fiches, les visites livrées.</span><span class="show-sm">Tout se suit dans votre espace client.</span></p></div>
+    </div>
+    <div class="steps-line" aria-hidden="true" data-fill="100%"><i></i></div>
+    <ol class="steps">
+      <li><span class="step-n" aria-hidden="true">01</span><h3 class="title">On définit vos métiers et votre zone</h3><p>Un appel de lancement&nbsp;: vos métiers, vos communes, vos créneaux, les chantiers qui vous intéressent. On fixe ensemble ce qu'est un rendez-vous qualifié.</p></li>
+      <li><span class="step-n" aria-hidden="true">02</span><h3 class="title">On lance les demandes</h3><p>Des annonces locales, validées avec vous. Les particuliers intéressés laissent leur demande.</p></li>
+      <li><span class="step-n" aria-hidden="true">03</span><h3 class="title">On rappelle et on qualifie</h3><p>Projet, logement, budget, délai. Si une réponse manque, rien n'arrive dans votre agenda.</p></li>
+      <li><span class="step-n" aria-hidden="true">04</span><h3 class="title">On livre, et on remplace</h3><p>La visite arrive dans votre agenda. Une absence se signale en un clic et se remplace sans frais.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="garantie" aria-labelledby="h-garantie">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="guarantee-copy">
+        <h2 class="t-display" id="h-garantie">Un client absent&nbsp;? <span class="tone">On le remplace.</span></h2>
+        <p class="text"><span class="hide-sm">S'il n'est pas là à l'heure de la visite, ou s'il ne correspond pas aux critères fixés ensemble, vous le signalez dans votre espace client. Un nouveau rendez-vous est livré à la place, sans frais.</span><span class="show-sm">Absent ou hors des critères&nbsp;? Signalez-le dans votre espace client&nbsp;: un nouveau rendez-vous est livré, sans frais.</span></p>
+        <div class="chips"><span class="chip">Absent à la visite</span><span class="chip">Critère non respecté</span><span class="chip">Remplacement sans frais</span></div>
+      </div>
+      <div class="swap ui" data-play aria-label="Exemple : une visite absente remplacée par une nouvelle">
+        <div class="rdv swap-old"><time><b>Ven. 21</b>09:00</time><div class="who"><b>Claire Fontaine</b><span>Climatisation · Lyon 3e</span></div><span class="state state-wait">Absente</span></div>
+        <div class="rdv swap-new"><time><b>Lun. 24</b>10:00</time><div class="who"><b>Nouvelle visite</b><span>Climatisation · Villeurbanne</span></div><span class="state state-ok">Remplacée</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="questions" aria-labelledby="h-faq">
+  <div class="wrap faq">
+    <div class="faq-intro">
+      <h2 class="t-display" id="h-faq">Ce qu'on nous demande avant de signer</h2>
+      <a class="btn btn-secondary btn-sm" href="#appel"><span>Poser une autre question</span><span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></a>
+    </div>
+    <div>
+      <details open><summary>Qu'est-ce qu'un rendez-vous qualifié&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Une visite chez un particulier propriétaire, qui a un projet dans les prochains mois et un budget. Les critères exacts sont fixés avec vous avant le lancement.</p></details>
+      <details><summary>La demande est-elle aussi envoyée à d'autres artisans&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Non. Chaque demande est réservée à un seul artisan&nbsp;: vous. Elle n'est jamais revendue, ni partagée.</p></details>
+      <details><summary>Quand arrivent les premiers rendez-vous&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>L'objectif est de 10 rendez-vous qualifiés en 21 jours. Les premiers arrivent en général dans les deux premières semaines.</p></details>
+      <details><summary>Que se passe-t-il si le client n'est pas là&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Vous le signalez dans votre espace client et on vous livre un nouveau rendez-vous à la place, sans frais.</p></details>
+      <details><summary>Je dois être disponible tout le temps&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Non. Vous nous donnez vos créneaux, on ne remplit que ceux-là. Vous gardez vos journées de chantier.</p></details>
+      <details><summary>Vous parlez au nom de mon entreprise&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Oui, avec votre nom, votre ton et vos arguments, validés ensemble.</p></details>
+      <details><summary>Vous travaillez avec quels métiers&nbsp;?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Pompes à chaleur, panneaux solaires, climatisation, isolation, chauffage, plomberie, serrurerie et portes blindées. Si vous intervenez chez des particuliers, on peut trouver vos clients.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="appel" aria-labelledby="h-appel">
+  <div class="wrap final">
+    <div class="final-copy">
+      <h2 class="t-display" id="h-appel">Vingt minutes pour savoir <span class="tone">combien de visites on peut vous trouver</span></h2>
+      <p class="text"><span class="hide-sm">Trois questions, puis on vous rappelle. Vous repartez avec une estimation, même si on ne travaille pas ensemble.</span><span class="show-sm">Trois questions, puis on vous rappelle avec une estimation.</span></p>
+      <ul class="reassure">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Demandes réservées à vous seul</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>10 visites en 21 jours, garanties ou remplacées</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Rappel sous 24 h</li>
+      </ul>
+    </div>
+    <div class="final-form">
+      <form class="lead-form" id="lead-form" novalidate aria-labelledby="h-appel">
+          <div class="lf-progress" aria-hidden="true"><span id="lf-count">Étape 1 sur 3</span><div class="bar"><i id="lf-bar" style="--p:33%"></i></div></div>
+
+          <fieldset class="lf-step" data-step="1">
+            <legend class="lf-q" tabindex="-1">Quel est votre métier&nbsp;?</legend>
+                        <div class="msel" data-msel><button type="button" class="msel-btn" id="msel-btn" aria-expanded="false" aria-controls="msel-panel" aria-describedby="err-metier"><span class="msel-value" data-placeholder="Choisissez un ou plusieurs métiers">Choisissez un ou plusieurs métiers</span><svg class="icon msel-chev" aria-hidden="true"><use href="#i-chevron"/></svg></button><div class="msel-panel" id="msel-panel" role="group" aria-label="Métiers" hidden><label class="msel-opt"><input type="checkbox" name="metier" value="Pompe à chaleur" id="metier-0"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Pompe à chaleur</label><label class="msel-opt"><input type="checkbox" name="metier" value="Panneaux solaires" id="metier-1"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Panneaux solaires</label><label class="msel-opt"><input type="checkbox" name="metier" value="Climatisation" id="metier-2"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Climatisation</label><label class="msel-opt"><input type="checkbox" name="metier" value="Isolation" id="metier-3"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Isolation</label><label class="msel-opt"><input type="checkbox" name="metier" value="Chauffage" id="metier-4"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Chauffage</label><label class="msel-opt"><input type="checkbox" name="metier" value="Plomberie" id="metier-5"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Plomberie</label><label class="msel-opt"><input type="checkbox" name="metier" value="Serrurerie" id="metier-6"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Serrurerie</label><label class="msel-opt"><input type="checkbox" name="metier" value="Autre" id="metier-7"><span class="msel-box" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Autre</label></div></div>
+            <p class="lf-error" id="err-metier" role="alert" hidden>Choisissez au moins un métier.</p>
+            <div class="lf-nav"><button type="button" class="btn btn-primary" data-next>Continuer<span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></button></div>
+          </fieldset>
+
+          <fieldset class="lf-step" data-step="2" hidden>
+            <legend class="lf-q" tabindex="-1">Où intervenez-vous&nbsp;?</legend>
+            <div class="field">
+              <label for="f-ville">Ville de votre entreprise</label>
+              <input id="f-ville" name="ville" type="text" autocomplete="address-level2" placeholder="Par exemple Lyon" aria-describedby="err-ville">
+              <p class="lf-error" id="err-ville" role="alert" hidden>Indiquez votre ville.</p>
+            </div>
+            <div class="field">
+              <span class="field-label" id="l-rayon">Rayon d'intervention</span>
+              <div class="opts" role="radiogroup" aria-labelledby="l-rayon"><label class="opt"><input type="radio" name="rayon" value="15 km" id="rayon-0"><span>15 km</span></label><label class="opt"><input type="radio" name="rayon" value="30 km" id="rayon-1" checked><span>30 km</span></label><label class="opt"><input type="radio" name="rayon" value="50 km" id="rayon-2"><span>50 km</span></label><label class="opt"><input type="radio" name="rayon" value="Plus" id="rayon-3"><span>Plus</span></label></div>
+            </div>
+            <div class="field">
+              <span class="field-label" id="l-vol">Visites voulues par mois</span>
+              <div class="opts" role="radiogroup" aria-labelledby="l-vol"><label class="opt"><input type="radio" name="volume" value="5 à 10" id="volume-0" checked><span>5 à 10</span></label><label class="opt"><input type="radio" name="volume" value="10 à 20" id="volume-1"><span>10 à 20</span></label><label class="opt"><input type="radio" name="volume" value="Plus de 20" id="volume-2"><span>Plus de 20</span></label></div>
+            </div>
+            <div class="lf-nav"><button type="button" class="lf-back" data-back>Retour</button><button type="button" class="btn btn-primary" data-next>Continuer<span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></button></div>
+          </fieldset>
+
+          <fieldset class="lf-step" data-step="3" hidden>
+            <legend class="lf-q" tabindex="-1">Comment vous joindre&nbsp;?</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-prenom">Prénom</label>
+                <input id="f-prenom" name="prenom" type="text" autocomplete="given-name" aria-describedby="err-prenom">
+                <p class="lf-error" id="err-prenom" role="alert" hidden>Indiquez votre prénom.</p>
+              </div>
+              <div class="field">
+                <label for="f-entreprise">Entreprise <span class="opt-label">facultatif</span></label>
+                <input id="f-entreprise" name="entreprise" type="text" autocomplete="organization">
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-tel">Téléphone</label>
+              <input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78" aria-describedby="err-tel">
+              <p class="lf-error" id="err-tel" role="alert" hidden>Ce numéro semble incomplet&nbsp;: 10 chiffres, par exemple 06 12 34 56 78.</p>
+            </div>
+            <div class="field">
+              <span class="field-label" id="l-moment">Le meilleur moment pour vous rappeler</span>
+              <div class="opts" role="radiogroup" aria-labelledby="l-moment"><label class="opt"><input type="radio" name="moment" value="Le matin" id="moment-0" checked><span>Matin</span></label><label class="opt"><input type="radio" name="moment" value="Le midi" id="moment-1"><span>Midi</span></label><label class="opt"><input type="radio" name="moment" value="En fin de journée" id="moment-2"><span>Fin de journée</span></label></div>
+            </div>
+            <p class="lf-legal">En envoyant ce formulaire, vous acceptez qu'Entremis vous rappelle au sujet de votre demande. <a href="confidentialite.html">Vos données</a></p>
+            <p class="lf-error" id="err-send" role="alert" hidden>L'envoi n'a pas marché. Réessayez, ou écrivez-nous à <a href="mailto:entremisagency@gmail.com">entremisagency@gmail.com</a>.</p>
+            <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="lf-nav"><button type="button" class="lf-back" data-back>Retour</button><button type="submit" class="btn btn-primary">Réserver mon appel<span class="btn-tile"><svg class="icon"><use href="#i-arrow"/></svg></span></button></div>
+          </fieldset>
+
+          <div class="lf-done" id="lf-done" hidden>
+            <span class="lf-done-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <h3 class="lf-q" tabindex="-1" id="lf-done-title">C'est noté.</h3>
+            <p class="text" id="lf-done-text"></p>
+            <button type="button" class="lf-back" data-restart>Modifier mes réponses</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-sign">On présente.<br><span class="tone">Vous signez.</span></p>
+    <div class="footer-grid">
+      <a class="logo" href="#top" aria-label="Entremis, haut de page"><svg aria-hidden="true"><use href="#logo-e"/></svg><span>ENTREMIS</span></a>
+      <nav aria-label="Pied de page"><a href="#ce-quon-fait">Ce qu'on fait</a><a href="#methode">Méthode</a><a href="#garantie">Garantie</a><a href="#questions">Questions</a><a href="#espace-client">Espace client</a></nav>
+      <p class="contact">Mail&nbsp;: <a href="mailto:entremisagency@gmail.com"><b>entremisagency@gmail.com</b></a></p>
+    </div>
+    <div class="footer-legal"><span>© 2026 Entremis</span><nav aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a></nav></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document.documentElement, animOn=d.classList.contains('anim');
+
+  /* Menu sur téléphone et tablette */
+  var mBtn=document.querySelector('.nav-menu-btn'), menu=document.getElementById('nav-menu');
+  function setMenu(open){ menu.hidden=!open; mBtn.setAttribute('aria-expanded',open); mBtn.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu'); }
+  mBtn.addEventListener('click',function(e){ e.stopPropagation(); setMenu(menu.hidden); });
+  menu.addEventListener('click',function(e){ if(e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click',function(e){ if(!menu.hidden && !e.target.closest('#nav')) setMenu(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !menu.hidden){ setMenu(false); mBtn.focus(); } });
+  addEventListener('resize',function(){ if(innerWidth>1080 && !menu.hidden) setMenu(false); });
+
+  /* Formulaire en 3 étapes (prototype : rien n'est envoyé, le dev branchera l'envoi) */
+  var form=document.getElementById('lead-form'), steps=[].slice.call(form.querySelectorAll('.lf-step')), done=document.getElementById('lf-done');
+  var lfCount=document.getElementById('lf-count'), lfBar=document.getElementById('lf-bar'), stepNow=1;
+  function showErr(id,input,on){ var e=document.getElementById(id); e.hidden=!on; if(input) input.setAttribute('aria-invalid',on?'true':'false'); return !on; }
+  function phoneOk(v){ var x=v.replace(/[^0-9+]/g,''); return /^0[1-9]\d{8}$/.test(x) || /^\+33[1-9]\d{8}$/.test(x); }
+  function valid(n){
+    if(n===1){ var okM=showErr('err-metier',document.getElementById('msel-btn'),!form.querySelector('input[name=metier]:checked')); if(!okM) document.getElementById('msel-btn').focus(); return okM; }
+    if(n===2){ var v=document.getElementById('f-ville'); return showErr('err-ville',v,!v.value.trim()); }
+    if(n===3){ var p=document.getElementById('f-prenom'), t=document.getElementById('f-tel');
+      var a=showErr('err-prenom',p,!p.value.trim()), b=showErr('err-tel',t,!phoneOk(t.value));
+      if(!a) p.focus(); else if(!b) t.focus(); return a&&b; }
+    return true;
+  }
+  function enter(el){ el.classList.remove('lf-enter'); void el.offsetWidth; el.classList.add('lf-enter'); setTimeout(function(){el.classList.remove('lf-enter')},400); }
+  function goStep(n){
+    stepNow=n; steps.forEach(function(f){ f.hidden=f.dataset.step!==String(n); }); done.hidden=true;
+    lfCount.textContent='Étape '+n+' sur 3'; lfBar.style.setProperty('--p',Math.round(n/3*100)+'%'); lfCount.parentNode.hidden=false;
+    var q=steps[n-1].querySelector('.lf-q'); q.focus({preventScroll:true}); enter(steps[n-1]);
+  }
+  form.addEventListener('click',function(e){
+    if(e.target.closest('[data-next]')){ if(valid(stepNow)) goStep(stepNow+1); else if(stepNow===2) document.getElementById('f-ville').focus(); }
+    if(e.target.closest('[data-back]')) goStep(stepNow-1);
+    if(e.target.closest('[data-restart]')) goStep(1);
+  });
+  form.addEventListener('change',function(e){ if(e.target.name==='metier'){ showErr('err-metier',document.getElementById('msel-btn'),false); } });
+
+  /* Sélecteur des métiers : un bouton qui ouvre la liste à cases, et affiche ce qui est choisi */
+  var ms=form.querySelector('[data-msel]'), mb=ms.querySelector('.msel-btn'), mp=ms.querySelector('.msel-panel'), mv=ms.querySelector('.msel-value');
+  function msOpen(o){ mp.hidden=!o; mb.setAttribute('aria-expanded',o); ms.classList.toggle('is-open',o); }
+  function msLabel(){
+    var c=[].slice.call(mp.querySelectorAll('input:checked')).map(function(i){ return i.value; });
+    mv.textContent=c.length ? (c.length>2 ? c.slice(0,2).join(', ')+' +'+(c.length-2) : c.join(', ')) : mv.dataset.placeholder;
+    ms.classList.toggle('has-value',c.length>0);
+  }
+  mb.addEventListener('click',function(e){ e.stopPropagation(); msOpen(mp.hidden); if(!mp.hidden){ var f=mp.querySelector('input'); if(f) f.focus({preventScroll:true}); } });
+  mp.addEventListener('change',msLabel);
+  document.addEventListener('click',function(e){ if(!mp.hidden && !e.target.closest('[data-msel]')) msOpen(false); });
+  ms.addEventListener('keydown',function(e){ if(e.key==='Escape' && !mp.hidden){ e.stopPropagation(); msOpen(false); mb.focus(); } });
+  form.addEventListener('click',function(e){ if(e.target.closest('[data-next]')) msOpen(false); },true);
+  form.addEventListener('input',function(e){ var id={ville:'err-ville',prenom:'err-prenom',tel:'err-tel'}[e.target.name]; if(id && e.target.getAttribute('aria-invalid')==='true'){ var ok=e.target.name==='tel'?phoneOk(e.target.value):!!e.target.value.trim(); if(ok) showErr(id,e.target,false); } });
+  form.addEventListener('keydown',function(e){ if(e.key==='Enter' && e.target.tagName==='INPUT' && stepNow<3){ e.preventDefault(); if(valid(stepNow)) goStep(stepNow+1); } });
+  /* Envoi : chaque demande part par e-mail à entremisagency@gmail.com, via Web3Forms (web3forms.com).
+     Coller ci-dessous la clé d'accès reçue par e-mail de Web3Forms. Elle peut être visible dans le code : c'est prévu ainsi. */
+  var FORM_KEY='COLLER_LA_CLE_WEB3FORMS_ICI';
+  var sendErr=document.getElementById('err-send');
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); if(!valid(3)) return;
+    var f=new FormData(form), prenom=f.get('prenom').trim(), ville=f.get('ville').trim(), moment=f.get('moment').toLowerCase(), tel=f.get('tel').trim();
+    var btn=form.querySelector('button[type="submit"]'), label=btn.firstChild;
+    function showDone(){
+      steps.forEach(function(s){ s.hidden=true; }); lfCount.parentNode.hidden=true; done.hidden=false;
+      document.getElementById('lf-done-title').textContent="C'est noté, "+prenom+'.';
+      document.getElementById('lf-done-text').textContent='On vous rappelle sous 24 h, '+moment+', au '+tel+'. Vous saurez combien de visites on peut vous trouver autour de '+ville+'.';
+      document.getElementById('lf-done-title').focus({preventScroll:true}); enter(done);
+    }
+    function reset(){ btn.disabled=false; label.textContent='Réserver mon appel'; }
+    function fail(){ sendErr.hidden=false; reset(); }
+    sendErr.hidden=true;
+    if(f.get('botcheck')) return;
+    if(!/^[0-9a-f-]{20,}$/i.test(FORM_KEY)){ fail(); return; }
+    btn.disabled=true; label.textContent='Envoi…';
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+      access_key:FORM_KEY, subject:'Nouvelle demande Entremis : '+prenom+(f.get('entreprise')?' ('+f.get('entreprise')+')':''), from_name:'Site Entremis',
+      'Prénom':prenom, 'Entreprise':f.get('entreprise')||'', 'Téléphone':tel, 'Moment pour rappeler':f.get('moment'),
+      'Métiers':f.getAll('metier').join(', '), 'Ville':ville, 'Rayon':f.get('rayon'), 'Visites par mois':f.get('volume')
+    })}).then(function(r){ return r.json(); }).then(function(j){ if(j && j.success){ reset(); showDone(); } else fail(); }).catch(fail);
+  });
+
+  /* Navigation : transparente sur la nuit, blanche dès que la feuille passe dessous */
+  var nav=document.getElementById('nav'), hero=document.querySelector('.hero');
+  function solid(){ nav.classList.toggle('is-solid', hero.getBoundingClientRect().bottom < nav.offsetHeight + 8); }
+
+  if(!animOn){ solid(); addEventListener('scroll',solid,{passive:true}); return; }
+
+  document.querySelectorAll('[data-fill]').forEach(function(b){ b.querySelector('i').style.setProperty('--p','0%'); });
+
+  /* Carte de l'espace client : la notification « Nouvelle visite » tombe une fois */
+  var nc=document.querySelector('.notif-card'), proof=document.querySelector('.proof');
+  if(nc && proof){
+    var proofIO=new IntersectionObserver(function(es){ es.forEach(function(en){
+      if(!en.isIntersecting) return; proofIO.disconnect();
+      setTimeout(function(){ nc.classList.add('is-on'); },900);
+      setTimeout(function(){ nc.classList.remove('is-on'); },5200);
+    }); },{threshold:.45});
+    proofIO.observe(proof);
+  }
+
+  /* Micro-animations : une fois à l'arrivée, puis au survol */
+  function replay(el){ el.classList.remove('play'); void el.offsetWidth; el.classList.add('play'); }
+  var playIO=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && !en.target.dataset.played){ en.target.dataset.played=1; setTimeout(function(){replay(en.target)},250); } }); },{threshold:.45});
+  document.querySelectorAll('[data-play]').forEach(function(el){
+    playIO.observe(el);
+    if(window.matchMedia && matchMedia('(hover:hover)').matches){ el.addEventListener('mouseenter',function(){ if(el.dataset.played && !el.dataset.busy){ el.dataset.busy=1; replay(el); setTimeout(function(){delete el.dataset.busy},2000); } }); }
+  });
+
+  /* À l'arrivée à l'écran : trait des étapes, coches du tableau */
+  function fire(el){
+    if(el.dataset.done)return; el.dataset.done=1; io.unobserve(el);
+    if(el.hasAttribute('data-reveal'))el.classList.add('is-in');
+    if(el.hasAttribute('data-fill'))setTimeout(function(){el.querySelector('i').style.setProperty('--p',el.dataset.fill)},300);
+  }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting)fire(en.target); }); },{rootMargin:'0px 0px -10% 0px',threshold:.1});
+  document.querySelectorAll('[data-reveal],[data-fill]').forEach(function(el){io.observe(el)});
+
+  /* Défilement : la barre de navigation passe en blanc sur la feuille */
+  addEventListener('scroll',solid,{passive:true}); addEventListener('resize',solid); solid();
+})();
+</script>
+</body>
+</html>
